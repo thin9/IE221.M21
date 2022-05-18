@@ -33,6 +33,7 @@ def ball_in_hand():
     button_down = False
     while not ball_dropped:
         draw_background()
+        draw_potted_balls()
         for ball in balls:
             if not ball.potted: gameDisplay.blit(ball.sprite, (ball.x - 18, ball.y - 18))
         pygame.display.update()
@@ -55,6 +56,7 @@ def ball_in_hand_9():
     button_down = False
     while not ball_dropped:
         draw_background()
+        draw_potted_balls()
         for ball in balls_9:
             if not ball.potted: gameDisplay.blit(ball.sprite, (ball.x - 18, ball.y - 18))
         pygame.display.update()
@@ -79,5 +81,7 @@ def number_of_balls_potted(c):
             total += 1
     return total
 
-
+def draw_potted_balls():
+    for index in range(len(potted_balls)):
+        gameDisplay.blit(potted_balls[index].sprite, (100000 + (index * 25), 1000000))
 

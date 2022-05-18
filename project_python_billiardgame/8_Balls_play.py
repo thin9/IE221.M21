@@ -43,6 +43,7 @@ def game_over():
 winner = None
 while winner is None:
     draw_background()
+    draw_potted_balls()
     for ball in balls:
         if not ball.potted:
             gameDisplay.blit(ball.sprite, (ball.x - 18, ball.y - 18))
@@ -78,7 +79,7 @@ while winner is None:
                         ball_collided_with.collision_monitor[balls.index(
                             ball)] = True
 
-                    # FRICTION
+                    # ma sat
                     if ball.frames >= (-30) * math.log10(0.05 * (ball.speed + 1)):
                         ball.speed -= 1
                         ball.frames = 0
@@ -89,15 +90,16 @@ while winner is None:
                
                 if balls_stopped():
                     draw_background()
+                    draw_potted_balls()
                     for ball in balls:
                         if not ball.potted:
                             gameDisplay.blit(
                                 ball.sprite, (ball.x - 18, ball.y - 18))
                     pygame.display.update()
-                    time.sleep(0.25)
+                    time.sleep(0.5)
 
                     
-                    # CHECKS POTTED BALLS AFTER EACH TURN
+                    # kiem tra bong vao lo
                     stripes, solids = 0, 0
                     for ball in recent_potted_balls:
                         if ball.colour == 'stripes':
@@ -139,7 +141,7 @@ while winner is None:
                             game_over()
                     recent_potted_balls[:] = []
 
-                    # DETERMINES TURN CHANGES 
+                    # kiem tra doi turn 
                     if player_turn.only_eight_ball_left:
                         turn_change = True
                         cue_ball_in_hand = False
@@ -187,7 +189,7 @@ while winner is None:
 
                     in_play = False
 
-    # AIMING AND STRIKING THE CUE BALL
+    # AIMING 
     if not in_play:
         if draw_guide:
             pygame.draw.line(gameDisplay, WHITE, (cue_ball.x,
@@ -195,7 +197,7 @@ while winner is None:
             gameDisplay.blit(pool_cue_rotated, pool_cue_coords)
             pygame.draw.circle(gameDisplay, WHITE, mouse_hold_coords, 16, 1)
 
-        # DRAWING CUE
+        # ve stick
         if mouse_held:
             mouseX, mouseY = pygame.mouse.get_pos(
             )[0], pygame.mouse.get_pos()[1]

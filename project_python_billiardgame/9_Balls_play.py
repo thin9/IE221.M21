@@ -42,6 +42,7 @@ def game_over_9():
 
 while winner is None:
     draw_background()
+    draw_potted_balls()
     for ball in balls_9:
         if not ball.potted:
             gameDisplay.blit(ball.sprite, (ball.x - 18, ball.y - 18))
@@ -87,6 +88,7 @@ while winner is None:
                 # if ball stop
                 if balls_stopped_9():
                     draw_background()
+                    draw_potted_balls()
                     for ball in balls_9:
                         if not ball.potted:
                             gameDisplay.blit(ball.sprite, (ball.x - 18, ball.y - 18))

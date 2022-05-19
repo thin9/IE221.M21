@@ -9,6 +9,7 @@
 
 Chạy game bằng cmd:
 > python main.py
+
 hoặc bằng terminal:
 > python3 main.py
 
